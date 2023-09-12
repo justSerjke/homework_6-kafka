@@ -13,13 +13,11 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class KafkaConsumer {
 
-    private static final String KAFKA_TOPIC = "Topic";
+    private static final String TOPIC_NAME = "Test_Topic";
 
-    @KafkaListener(topics = KAFKA_TOPIC, containerFactory = "kafkaListenerContainerFactory")
+    @KafkaListener(topics = TOPIC_NAME, containerFactory = "kafkaListenerContainerFactory")
     public void KafkaListener(@Payload String message,
-                              @Header(KafkaHeaders.RECEIVED_TOPIC) String receivedTopic,
-                              @Header(KafkaHeaders.RECEIVED_PARTITION) String receivedPartition,
-                              @Header(KafkaHeaders.OFFSET) String receivedOffset) {
-        log.info("Receive from Topic {} by partition {}, offset {}: {}", receivedTopic, receivedPartition, receivedOffset, message);
+                              @Header(KafkaHeaders.RECEIVED_TOPIC) String receivedTopic) {
+        log.info("Receive message from Topic {}: {}", receivedTopic, message);
     }
 }
