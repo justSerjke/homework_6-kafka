@@ -1,0 +1,4 @@
+spring:
+  kafka:
+    consumer:
+      group_id: Fedorov_S.M
